@@ -3,4 +3,5 @@
 -- Add any additional options here
 
 -- Clipboard
-vim.opt.clipboard = ""
+-- On ArchLinux need to install wl-clipboard
+-- Use CTRL+MAJ+V for Paste
