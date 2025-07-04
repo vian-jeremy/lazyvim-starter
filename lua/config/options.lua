@@ -53,22 +53,22 @@ local function detect_clipboard_tool()
   if env.is_tmux and not env.has_display then
     log_clipboard("Detected tmux without display - using tmux clipboard integration")
     
-    -- Use OSC52 escape sequence for terminal clipboard (preferred method)
+    -- Use custom script to copy to both tmux and OS clipboard
+    -- This combines tmux clipboard with OSC52 for terminal clipboard
+    table.insert(tools, {
+      name = "tmux-dual",
+      copy = "dual-clipboard-copy",
+      paste = "tmux save-buffer -",
+      requires_x11 = false,
+      requires_wayland = false
+    })
+    
+    -- Use OSC52 escape sequence for terminal clipboard (fallback)
     -- This works in many modern terminals even without X11
     table.insert(tools, {
       name = "osc52",
       copy = "sh -c 'printf \"\\033]52;c;$(base64 -w0)\\033\\\\\"'",
       paste = "echo ''", -- OSC52 is copy-only
-      requires_x11 = false,
-      requires_wayland = false
-    })
-    
-    -- Use tmux's built-in clipboard commands as fallback
-    -- This will work with tmux's clipboard integration if configured
-    table.insert(tools, {
-      name = "tmux-builtin",
-      copy = "tmux load-buffer -",
-      paste = "tmux save-buffer -",
       requires_x11 = false,
       requires_wayland = false
     })
@@ -102,6 +102,10 @@ local function detect_clipboard_tool()
     -- Handle special tools
     if tool_name == "tmux-builtin" then
       is_available = vim.fn.executable("tmux") == 1
+    elseif tool_name == "tmux-dual" then
+      is_available = vim.fn.executable("dual-clipboard-copy") == 1
+    elseif tool_name == "xclip-tmux" then
+      is_available = vim.fn.executable("xclip") == 1
     elseif tool_name == "osc52" then
       is_available = true -- OSC52 doesn't need external tools
     else
@@ -171,6 +175,7 @@ if clipboard_tool then
   -- Enable clipboard integration
   vim.opt.clipboard = "unnamedplus"
   log_clipboard("OS clipboard integration enabled with " .. clipboard_tool.name)
+  log_clipboard("Clipboard option set to: " .. vim.o.clipboard)
 else
   log_clipboard("Falling back to internal clipboard only")
   vim.opt.clipboard = ""
