@@ -26,7 +26,16 @@ local function setup_clipboard()
       },
       paste = {
         ["+"] = function()
-          -- Try to read from clipboard directory first
+          -- Use our smart clipboard paste script
+          local paste_cmd = vim.fn.expand("~/dotfiles/bin/tmux-clipboard-paste")
+          if vim.fn.executable(paste_cmd) == 1 then
+            local output = vim.fn.system(paste_cmd .. " --no-output"):gsub("\n$", "")
+            if vim.v.shell_error == 0 and output ~= "" then
+              return vim.split(output, "\n")
+            end
+          end
+          
+          -- Fallback to file-based approach
           local clipboard_dir = vim.fn.expand("~/.config/tmux/clipboard")
           if vim.fn.isdirectory(clipboard_dir) == 0 then
             clipboard_dir = "/tmp/tmux-clipboard-" .. vim.env.USER
@@ -36,18 +45,6 @@ local function setup_clipboard()
           if vim.fn.filereadable(latest_file) == 1 then
             local content = vim.fn.readfile(latest_file)
             return content
-          end
-          
-          -- Fallback to system clipboard
-          if vim.fn.executable("xsel") == 1 then
-            local output = vim.fn.system("xsel -o -b"):gsub("\n$", "")
-            return vim.split(output, "\n")
-          elseif vim.fn.executable("xclip") == 1 then
-            local output = vim.fn.system("xclip -o -selection clipboard"):gsub("\n$", "")
-            return vim.split(output, "\n")
-          elseif vim.fn.executable("wl-paste") == 1 then
-            local output = vim.fn.system("wl-paste"):gsub("\n$", "")
-            return vim.split(output, "\n")
           end
           
           return {""}
