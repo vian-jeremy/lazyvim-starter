@@ -16,3 +16,20 @@ map("v", "<A-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", 
 -- Search
 map({ "n", "x" }, "<C-f>", "<esc><cmd>/", { desc = "Search" })
 --vim.keymap.set("n", "<C-f>", "/", { noremap = true, silent = true })
+
+-- Modern LSP Mappings (v0.11.2 defaults)
+-- Note: These are now default in v0.11.2, but explicitly defined for clarity
+map("n", "grn", vim.lsp.buf.rename, { desc = "LSP Rename" })
+map("n", "grr", vim.lsp.buf.references, { desc = "LSP References" })
+map("n", "gra", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+map("n", "gri", vim.lsp.buf.implementation, { desc = "LSP Implementation" })
+map("n", "gO", vim.lsp.buf.document_symbol, { desc = "LSP Document Symbols" })
+
+-- Enhanced diagnostic navigation
+map("n", "<leader>dx", vim.diagnostic.reset, { desc = "Reset Diagnostics" })
+map("n", "<leader>dv", function()
+  vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines })
+end, { desc = "Toggle Virtual Lines" })
+
+-- Quick diagnostic float
+map("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show Diagnostic Float" })

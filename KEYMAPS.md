@@ -10,6 +10,18 @@
 ### Search
 - `Ctrl+F` - Start search (custom override)
 
+### Modern LSP Mappings (v0.11.2)
+- `grn` - LSP Rename
+- `grr` - LSP References  
+- `gra` - LSP Code Action
+- `gri` - LSP Implementation
+- `gO` - LSP Document Symbols
+
+### Enhanced Diagnostics
+- `<leader>dx` - Reset Diagnostics
+- `<leader>dv` - Toggle Virtual Lines
+- `<leader>df` - Show Diagnostic Float
+
 ---
 
 ## General Navigation & Movement

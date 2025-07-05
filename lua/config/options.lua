@@ -218,3 +218,34 @@ function _G.test_clipboard_paste()
   print("Pasted from clipboard: " .. pasted_text)
   return pasted_text
 end
+
+-- Modern LSP Features (v0.11.2)
+-- Enable builtin LSP completion
+if vim.lsp.completion and vim.lsp.completion.enable then
+  vim.lsp.completion.enable()
+end
+
+-- Enhanced diagnostic configuration with v0.11 features
+vim.diagnostic.config({
+  -- Show virtual text only on current line to reduce noise
+  virtual_text = { 
+    only_current_line = true,
+    prefix = "●",
+    source = "if_many"
+  },
+  -- Enable virtual lines for multiline diagnostics
+  virtual_lines = false, -- Can be enabled with toggle
+  -- Show diagnostics in insert mode
+  update_in_insert = false,
+  -- Severity sorting
+  severity_sort = true,
+  -- Float window configuration
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
