@@ -6,6 +6,7 @@ return {
     opts = {
       servers = {
         pyright = {
+          mason = false,
           settings = {
             python = {
               analysis = {
@@ -18,6 +19,7 @@ return {
           },
         },
         ruff_lsp = {
+          mason = false,
           init_options = {
             settings = {
               args = {
@@ -37,6 +39,7 @@ return {
     opts = {
       servers = {
         clangd = {
+          mason = false,
           cmd = {
             "clangd",
             "--background-index",
@@ -116,6 +119,7 @@ return {
     opts = {
       servers = {
         lua_ls = {
+          mason = false,
           settings = {
             Lua = {
               workspace = {
@@ -148,6 +152,7 @@ return {
     opts = {
       servers = {
         yamlls = {
+          mason = false,
           settings = {
             yaml = {
               keyOrdering = false,
@@ -187,6 +192,7 @@ return {
     opts = {
       servers = {
         svlangserver = {
+          mason = false,
           cmd = { "svlangserver" },
           filetypes = { "systemverilog", "verilog" },
           root_dir = function(fname)
@@ -241,6 +247,7 @@ return {
     opts = {
       servers = {
         jsonls = {
+          mason = false,
           settings = {
             json = {
               format = {
@@ -260,6 +267,7 @@ return {
     opts = {
       servers = {
         dockerls = {
+          mason = false,
           settings = {
             docker = {
               languageserver = {
@@ -280,6 +288,7 @@ return {
     opts = {
       servers = {
         bashls = {
+          mason = false,
           filetypes = { "sh", "bash", "zsh" },
           settings = {
             bashIde = {

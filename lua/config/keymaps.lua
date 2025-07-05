@@ -33,3 +33,6 @@ end, { desc = "Toggle Virtual Lines" })
 
 -- Quick diagnostic float
 map("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show Diagnostic Float" })
+
+-- Neo-tree file explorer
+map("n", "<leader>fe", "<cmd>Neotree<cr>", { desc = "Neo-tree File Explorer" })

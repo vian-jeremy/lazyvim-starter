@@ -1,5 +1,8 @@
 return {
   "folke/snacks.nvim",
+  keys = {
+    { "<leader>fe", false },
+  },
   opts = {
     picker = {
       win = {
