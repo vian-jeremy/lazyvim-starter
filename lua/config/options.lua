@@ -4,7 +4,8 @@
 
 -- Clipboard OS Integration
 local function log_clipboard(message)
-  vim.notify("[Clipboard] " .. message, vim.log.levels.INFO)
+  -- Silent debug logging - can be enabled for troubleshooting
+  -- vim.notify("[Clipboard] " .. message, vim.log.levels.INFO)
 end
 
 local function check_display_environment()
