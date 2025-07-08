@@ -6,7 +6,7 @@ return {
       close_if_last_window = false,
       enable_git_status = true,
       enable_diagnostics = true,
-      
+
       default_component_configs = {
         indent = {
           with_expanders = true,
@@ -34,7 +34,7 @@ return {
           },
         },
       },
-      
+
       window = {
         position = "left",
         width = 35,
@@ -80,9 +80,9 @@ return {
           end,
         },
       },
-      
+
       filesystem = {
-        bind_to_cwd = false,
+        bind_to_cwd = true,
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
         filtered_items = {
@@ -137,7 +137,7 @@ return {
           },
         },
       },
-      
+
       buffers = {
         follow_current_file = { enabled = true },
         group_empty_dirs = true,
@@ -151,7 +151,7 @@ return {
           },
         },
       },
-      
+
       git_status = {
         window = {
           position = "float",
@@ -167,7 +167,7 @@ return {
           },
         },
       },
-      
+
       event_handlers = {
         {
           event = "file_opened",
@@ -179,3 +179,4 @@ return {
     },
   },
 }
+

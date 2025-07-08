@@ -35,4 +35,28 @@ end, { desc = "Toggle Virtual Lines" })
 map("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show Diagnostic Float" })
 
 -- Neo-tree file explorer
-map("n", "<leader>fe", "<cmd>Neotree<cr>", { desc = "Neo-tree File Explorer" })
+map("n", "<leader>fe", "<cmd>Neotree position=current<cr>", { desc = "Neo-tree File Explorer (Full Window)" })
+
+-- Custom Directory and File Path Operations
+map("n", "<leader>cd", function()
+  local current_file = vim.fn.expand("%:p")
+  if current_file == "" then
+    vim.notify("No file is currently open", vim.log.levels.WARN)
+    return
+  end
+  
+  local current_dir = vim.fn.expand("%:p:h")
+  vim.cmd("cd " .. vim.fn.fnameescape(current_dir))
+  vim.notify("Changed directory to: " .. current_dir, vim.log.levels.INFO)
+end, { desc = "Change Directory to Current Buffer" })
+
+map("n", "<leader>fp", function()
+  local current_file = vim.fn.expand("%:p")
+  local current_dir = vim.fn.getcwd()
+  
+  if current_file == "" then
+    vim.notify("Working Directory: " .. current_dir .. "\nNo file currently open", vim.log.levels.INFO)
+  else
+    vim.notify("File: " .. current_file .. "\nWorking Directory: " .. current_dir, vim.log.levels.INFO)
+  end
+end, { desc = "Display File Path and Working Directory" })

@@ -33,7 +33,7 @@ The configuration is installed by cloning to `~/.config/nvim` and starting Neovi
 
 - Built on LazyVim framework which provides base configuration and plugin management
 - Plugin configurations in `lua/plugins/` are automatically loaded and merged with LazyVim defaults
-- Custom keymaps include Alt+Up/Down for line movement and Ctrl+F for search
+- Custom keymaps include Alt+Up/Down for line movement, Ctrl+F for search, and leader-based directory/file operations
 - Uses lazy loading for plugins with automatic checking for updates
 - Mason is configured to ensure installation of stylua, shellcheck, shfmt, and flake8
 - The example.lua plugin file is disabled but shows patterns for extending LazyVim
@@ -52,3 +52,28 @@ The configuration is installed by cloning to `~/.config/nvim` and starting Neovi
 - Add new keymaps in `lua/config/keymaps.lua` using `LazyVim.safe_keymap_set`
 - Add options in `lua/config/options.lua`
 - Add autocommands in `lua/config/autocmds.lua`
+
+## Custom Keymaps Cheatsheet
+
+### Line Movement
+- `Alt+Up/Down` - Move current line or selected lines up/down
+
+### Search
+- `Ctrl+F` - Enter search mode
+
+### LSP Operations
+- `grn` - LSP Rename
+- `grr` - LSP References
+- `gra` - LSP Code Action
+- `gri` - LSP Implementation
+- `gO` - LSP Document Symbols
+
+### Diagnostics
+- `<leader>dx` - Reset Diagnostics
+- `<leader>dv` - Toggle Virtual Lines
+- `<leader>df` - Show Diagnostic Float
+
+### File Operations
+- `<leader>fe` - Neo-tree File Explorer (Full Window)
+- `<leader>cd` - Change Directory to Current Buffer's Directory
+- `<leader>fp` - Display File Path and Working Directory
